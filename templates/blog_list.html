@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>My Blogs</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+
+        .blog{
+            padding:20px 0px;
+        }
+        .blog .info span {
+            padding-right: 10px;
+        }
+        .blog .summary {
+            padding:20px 20px;
+        }
+    </style>
+</head>
+<body style="background-color:#f0f0f0">
+<header class="main-header" style="background-color: darkslategrey;height: 100px;padding-top: 10px;box-shadow: 5px 2px 5px #888888;
+">
+    <h1  align="center" style="font-family:'Impact ' ;color: aliceblue">YoKao's Blogs</h1>
+</header>
+<div class="container">
+    <div class="col-xs-8 col-md-offset-1" style="margin-top: 30px">
+        {% for blog in blogs %}
+        <div align="center" class="blog" style="background-color: white;box-shadow: 2px 2px 1px #888888;margin-top: 30px">
+            <div class="title">
+                <h2>{{ blog.title }}</h2>
+            </div>
+            <div class="info">
+                <span class="catagory" style="color: #ff9900;">{{ blog.catagory.name }}</span>
+                <span class="author" style="color: #4a86e8;">{{ blog.author }}</span>
+                <span class="created" style="color: #6aa84e;">{{ blog.created |date:"Y-m-d H:i" }}</span>
+            </div>
+            <div class="summary" style="margin: 30px 0;">
+                {{ blog.content | truncatechars:100 }}
+            </div>
+            <div>
+                <a class="btn btn-default" href="{% url 'blog_get_detail' blog.id %}">阅读全文</a>
+            </div>
+            <footer class="post-footer clearfix" style="border-top: 1px solid #ebebeb;margin-top: 30px;padding: 21px 0 0;"></footer>
+
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col-xs-3" style="margin-top: 60px;background-color: white;background-color: white;box-shadow: 1px 1px 1px #888888;min-height: 600px">
+        <ul  class="list-group" style="margin-top: 30px;border: none">
+            <li class="list-group-item">css没有分离</li>
+            <li class="list-group-item">没有文章分页</li>
+            <li class="list-group-item">文章格式</li>
+            <li class="list-group-item">搜索没写</li>
+            <li class="list-group-item">标签栏没加</li>
+            <li class="list-group-item">细节页面很粗列，评论</li>
+            <li class="list-group-item">2.0改进</li>
+        </ul>
+    </div>
+</div>
+
+
+</body>
+</html>
